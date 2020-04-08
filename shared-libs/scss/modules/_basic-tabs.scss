@@ -1,0 +1,38 @@
+/// basic tabs, provider a basic UI for tabs component.
+.basic-tabs {
+  &__header {
+    @extend %normalized-list;
+    @extend %clearfix;
+
+    &-item {
+      @include user-select(none);
+
+      float: left;
+      cursor: pointer;
+      text-align: center;
+
+      a {
+        display: block;
+      }
+
+      // 激活
+      &--active {
+        cursor: default;
+      }
+    }
+  }
+
+  &__contents {
+    background: map-get($colors, pure-white);
+  }
+
+  &__content {
+    @extend %clearfix;
+
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+}

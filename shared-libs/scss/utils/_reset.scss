@@ -1,0 +1,71 @@
+html {
+  font-size: $root-font-size;
+  height: 100%;
+}
+
+body {
+  // need to specify font-weight to force firefox render a "light/lighter" English font.
+  font-weight: 100;
+  font-size: #{map-get($font-sizes, base)};
+  line-height: 1.5;
+  font-family: HelveticaNeue-Light, 'Helvetica Neue Light', Helvetica-Light, 'Helvetica Light', Helvetica, Arial, 'PingFang SC Light', PingFangSC-Light, HeitiSC-Light, '\5FAE\8F6F\96C5\9ED1', 'Microsoft YaHei', 'SimHei', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: map-get($colors, text-main);
+  height: inherit;
+  background: map-get($colors, reset-bg);
+}
+
+a {
+  text-decoration: none;
+
+  color: inherit;
+  outline: none;
+
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+
+  &:hover,
+  &:active {
+
+    color: inherit;
+  }
+}
+
+input {
+  @include placeholder-color(map-get($colors, pure-white));
+
+  // 数字去掉上下箭头
+  &[type=number]{
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+    }
+
+    // 火狐只能改成文本框形式,但是还是数字框,输入文本会给出错误提示
+    -moz-appearance: textfield;
+  }
+
+  //ie的input兼容去掉input默认伪类样式
+  &::-ms-clear,
+  &::-ms-reveal{
+    display:none;
+  }
+}
+
+input,
+button,
+select,
+textarea {
+  @include box-sizing(border-box);
+
+  font-family: inherit;
+  font-size: inherit;
+
+  color: inherit;
+  //background: transparent;
+  // do not show "blue" shadow on chrome
+  outline: none;
+}

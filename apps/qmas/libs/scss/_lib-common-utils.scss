@@ -1,0 +1,9 @@
+// sass-lint:disable Indentation
+@import
+  '~__shared-libs/scss/utils/variables',
+  'utils/app-colors',
+  '~__shared-libs/scss/utils/functions',
+  '~__shared-libs/scss/utils/mixins',
+  // app mixins
+  'utils/mixins',
+  '~__shared-libs/scss/utils/placeholders';

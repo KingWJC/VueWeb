@@ -1,0 +1,68 @@
+/// normalize the UI of ul and ol
+%containerization {
+  min-width: $maximum-layout-width;
+  max-width: $maximum-layout-width;
+  margin: 0 auto;
+}
+
+%normalized-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/// Micro clearfix to avoid repeating `.clearfix` everywhere
+%clearfix {
+  &::after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+//溢出隐藏通用样式（通常和 .word-hidden() mixin 一起使用）
+%overflow-hidden-word {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 基础通用table样式，用placeholder提取公共样式（禁止内部使用 &，因为 placeholder 内部
+// 不能取到 &，需要使用 & 的样式，请使用 unify-table-ui mixin，向内部继续添加样式）
+%unify-table-ui-basics {
+  // border: 1px solid map-get($colors, dialog-cancel-border);
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th, td {
+    vertical-align: middle;
+    text-align: left;
+    padding: 0;
+
+    &:first-child {
+      padding-left:sz(20);
+    }
+  }
+
+  thead {
+    tr {
+      height: sz(40);
+      border-bottom: 1px solid map-get($colors, dialog-cancel-border);
+      color: map-get($colors, table-thead-color);
+    }
+  }
+
+  tbody {
+    tr {
+      height:sz(40);
+      border-bottom:1px solid map-get($colors, dialog-cancel-border);
+      color: map-get($colors, text-light);
+      cursor:pointer;
+
+      &:hover {
+        background: map-get($colors, bg-home);
+      }
+    }
+  }
+}

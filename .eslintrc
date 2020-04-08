@@ -1,0 +1,252 @@
+{
+  root: true,
+
+  "parserOptions": {
+    // 使用 babel 引擎解析 es6 语法
+    "parser": "babel-eslint",
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": false,
+      "modules": true
+    }
+  },
+
+  env: {
+    es6: true,
+    node: true,
+    browser: true
+  },
+
+  // 不进行检查的全局变量（需要跟着项目走！）
+  // 完全相同于项目内 webpack 的 externals
+  "globals": {
+    "PAGE_PAYLOAD": true,
+    "CONFIG": true
+  },
+
+  extends: [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:vue/recommended"
+  ],
+
+  rules: {
+
+
+    // TODO: 是否支持 mustache 左右空格？(试行：需要)
+    "vue/this-in-template": "off",
+    // 必须使用全等于
+    eqeqeq: "off",
+
+    // 操作符换行：放到行尾（比如多重条件判断的 && 必须放到上一行尾部，禁止放到下一行头部）
+    operator-linebreak: ["error", "after", {
+      // 三元表达式，前置
+      "overrides": { "?": "ignore", ":": "ignore" }
+    }],
+
+    // 语句块比如 if, while 必须有 {},
+    curly: "error",
+
+    // indent: ["error", 2, {
+    //   // case 语句要相对 switch 缩进
+    //   "SwitchCase": 1
+    // }],
+    "indent": ["off", 2],
+
+    // 链式调用必须换行缩进
+    "newline-per-chained-call": "error",
+
+    // 对象内部键值对，必须一行一对
+    "object-property-newline": ["error", {
+      // 不允许全部出现在一行上
+      "allowAllPropertiesOnSameLine": false
+    }],
+
+    // 对象内部，如果一个属性换了行，则所有都换行，否则所有都不换行
+    "object-curly-newline": ["error", {
+      // 对象申明的花括号，如果不换就都不换，如果换都换，只有一个键值对就不换，为空不换
+      // 只有一个键值对，但是导致本行超长，就要换（比如函数最后一个对象参数里面的键
+      // 是一个超长字符串）
+      "ObjectExpression": { "consistent": true },
+      // 赋值解构，要换都换，否则不换
+      "ObjectPattern": { "multiline": true },
+      // import 语句，两个及以上就要换
+      "ImportDeclaration": { "consistent": true },
+      // export 语句，要换都换，要不换都不换，如果不换导致本行超长，则全部换
+      "ExportDeclaration": { "consistent": true }
+    }],
+
+    // 始终使用双引号
+    "quotes": ["error", "double", {
+      // 单引号里面包双引号（反之亦然）不进行转义
+      "avoidEscape": true,
+      // 允许模板字符串
+      "allowTemplateLiterals": true
+    }],
+
+    // 对象的键只有在需要的时候用引号包裹
+    // 如果不显示的进行配置，vue eslint plugin 会忽略该项
+    "quote-props": ["error", "as-needed"],
+
+    // 禁止行内注释
+    "no-inline-comments": ["error"],
+
+    // 代码块的花括号要跟在第一行后面，不能换行（除非 else 语句有注释，则局部屏蔽 lint)
+    "brace-style": [2, "1tbs"],
+
+    // 代码块内部开头和结尾禁止空行, blocks, classes, switches
+    padded-blocks: ["error", "never"],
+
+    // 代码块之间换行
+    "padding-line-between-statements": [
+      "error",
+
+      // if 之前换行
+      { "blankLine": "always", "prev": "*", "next": "if" },
+      // for 之前换行
+      { "blankLine": "always", "prev": "*", "next": "for" },
+      // return 之前换行
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      // function 之前换行
+      { "blankLine": "always", "prev": "*", "next": "function" }
+    ],
+
+    // 函数定义的 ( 前面不可空格
+    "space-before-function-paren": ["error", "never"],
+
+    // 函数调用（注意不是定义！）后面不可空格
+    "func-call-spacing": ["error", "never"],
+
+    // 代码注释必须以空格开头，无论是单行注释还是块注释
+    "spaced-comment": ["error", "always"],
+
+    "arrow-spacing": ["error"],
+
+    // 强制结尾分号
+    semi: ["error", "always"],
+
+    // 分号前不可空格，分号后必须空格
+    "semi-spacing": ["error", {"before": false, "after": true}],
+
+    // 代码块 { 之前必须有空格
+    "space-before-blocks": ["error"],
+
+    // 操作符之间需要空格
+    "space-infix-ops": ["error"],
+
+    // 逗号前面不可空格，后面必须空格，e.g. var a = 3, b = 4;
+    "comma-spacing": ["error", { "before": false, "after": true }],
+
+    // 禁止多重空格, e.g. let    a =  33;
+    "no-multi-spaces": ["error"],
+
+    // 关键字左右必须空格，比如 if (xxx)
+    "keyword-spacing": ["error", {
+      "before": true,
+      "after": true
+    }],
+
+    // 禁止使用拖尾逗号(最后一项尾逗号)
+    // 包括: array/object/export/import/function
+    "comma-dangle": ["error", {
+      // 函数参数列表最后不允许出现尾逗号
+      "functions": "never"
+    }],
+
+    // 对象键后面必须空格
+    "key-spacing": ["error", { "afterColon": true }],
+
+    // 一行最大 80 字符
+    "max-len": ["error", {
+      "code": 80,
+      // 忽略模板字符串导致的超长
+      "ignoreTemplateLiterals": true,
+      // 忽略正则字面量
+      "ignoreRegExpLiterals": true,
+      // 忽略 url
+      "ignoreUrls": true,
+      // import 语句超长时不检查(开头允许有空格，vue 里面会整体缩进)
+      "ignorePattern": "^\\s*import\\s+.+\\s+from\\s+.+;$"
+    }],
+
+    // 如果函数参数任意一个换了行，则所有的都要同时换行
+    "function-paren-newline": ["error", "consistent"],
+
+    // html 缩进
+    "vue/html-indent": ["error", 2, {
+      "attribute": 1,
+      "closeBracket": 0,
+      // 属性是否悬挂对齐：否
+      "alignAttributesVertically": false,
+      "ignores": []
+    }],
+
+    // template 换行规则
+    "vue/max-attributes-per-line": [2, {
+      "singleline": 1,
+      "multiline": {
+        "max": 1,
+        // 第一个属性不用换行：是
+        "allowFirstLine": true
+      }
+    }],
+
+    // 标签需要自闭合
+    "vue/html-self-closing": ["error", {
+      "html": {
+        // 类似 img 使用 />
+        "void": "always",
+        // 常规html元素绝不自闭合，比如 <p> 不能写成 <p />
+        "normal": "never",
+        "component": "never"
+      },
+      "svg": "never",
+      "math": "never"
+    }],
+
+    // props 使用驼峰
+    'vue/attribute-hyphenation': [2, 'never', {
+      // 例外： custom-prop: 自定义的非 props 属性, 例如 abc-def="777"
+      'ignore': ['data-', 'aria-', 'slot-scope', 'custom-prop']
+    }],
+
+    // 组件 name 属性必须小写连字符形式
+    "vue/name-property-casing": ["error", "kebab-case"]
+  },
+
+  // 添加例外规则
+  overrides: [
+    {
+      files: ["*.vue"],
+      rules: {
+        indent: "off",
+        // vue 组件内部 script 整体缩进 2 空格
+        "vue/script-indent": ["error", 2, {
+          // 整体缩进（相对于 <script> 标签）
+          baseIndent: 1,
+          // switch case 需要缩进
+          switchCase: 1,
+          // 忽略如下 AST 节点，不检查
+          ignores: [
+            // [不推荐使用！]可选项：vue 解析变量申明的时候，不再使用悬挂缩进
+            // 开启之后所有之后的申明节点将不再被检查缩进，而且也不会被 Eslint 检查，
+            // 因为上面我们已经设置 indent 为 "off"
+            // "VariableDeclarator"
+          ]
+        }]
+      }
+    },
+
+    // nodejs 脚本，可以使用 console
+    {
+      files: [
+        "arch/**/*.js",
+        "apps/qmas/utils/**/*.js"
+      ],
+      rules: {
+        "no-console": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+// select a date range
+.range-calendar {
+  @include border-radius(4px);
+  @include box-shadow(2px 2px 4px rgba(map-get($colors, pure-black), 0.1));
+
+  width: sz(530 - 2);
+  border: 1px solid map-get($colors, dropdown-box-border);
+  background: map-get($colors, pure-white);
+
+  &__pickers {
+    .calendar {
+      float: left;
+      margin-left: sz(20);
+
+      &__paginator {
+        margin-top: sz(10);
+      }
+
+      &:last-child {
+        float: right;
+        margin-left: 0;
+        margin-right: sz(20);
+        padding-left: sz(20 - 1);
+        border-left: 1px solid map-get($colors, checkboxgroup-bg);
+      }
+    }
+  }
+
+  &__footer {
+    padding: sz(10) sz(10) sz(10) sz(20);
+    border-top: 1px solid map-get($colors, checkboxgroup-bg);
+    font-weight: normal;
+
+    &-feedback {
+      float: left;
+      margin: 0;
+      height: sz(30);
+      line-height: sz(30);
+
+      &-range {
+        color: map-get($colors, theme-orange);
+      }
+    }
+
+    &-btns {
+      float: right;
+    }
+
+    &-cancel,
+    &-ok {
+      float: right;
+    }
+
+    &-cancel {
+      margin-right: sz(20);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+/// used to make footer sticky to the bottom of the browser.
+.page-content-wrapper {
+  min-height: 100%;
+  margin-bottom: -($global-footer-height);
+
+  &::after {
+  	display: block;
+  	content: '';
+  	height: $global-footer-height;
+  }
+}

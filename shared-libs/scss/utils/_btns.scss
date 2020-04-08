@@ -1,0 +1,44 @@
+/// Buttons
+/// @example
+///   `<a href="javascript:;" class="btn"></a>`
+///   `<a href="javascript:;" class="btn btn--block"></a>`
+///   `<a href="javascript:;" class="btn btn--white btn--block"></a>`
+.btn {
+  @include border-radius(5px);
+  @include user-select(none);
+
+  cursor: pointer;
+  display: inline-block;
+  width: sz(78);
+  height: sz(26);
+  line-height: sz(26);
+  text-align: center;
+  background: map-get($colors, theme-blue);
+  border: 1px solid map-get($colors, theme-blue);
+
+  @at-root a#{&} {
+    color: map-get($colors, pure-white);
+  }
+
+  // disabled button
+  &#{get-bem-root()}--disabled {
+    border: 1px solid map-get($colors, dialog-input-border);
+    background: map-get($colors, dialog-input-disabled-bg);
+    cursor: default;
+
+    @at-root a#{&} {
+      color: map-get($colors, dialog-disabled-text-color);
+    }
+  }
+
+  // white button
+  &#{&}--white {
+    background: map-get($colors, pure-white);
+    border: 1px solid map-get($colors, theme-blue);
+    cursor: pointer;
+
+    @at-root a#{&} {
+      color: map-get($colors, theme-blue);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@charset 'utf-8';
+
+/// scss-lint:disable Indentation
+@import '~__libs/scss/lib-common-utils';
+
+#page-userinfo {
+  .user-info-filter {
+    // border 2 padding 20
+    @include custom-container(sz(22));
+
+    margin-top: sz(10);
+  }
+
+  .user-info {
+    @include custom-container(sz(22));
+
+    margin: sz(10) auto sz(20);
+    // 导航50  面包屑 35  margin 30 filter 50 filter-margin 10 padding 20
+    // border 2
+    height: calc(100% - 197px);
+  }
+}

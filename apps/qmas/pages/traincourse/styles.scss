@@ -1,0 +1,11 @@
+@charset 'utf-8';
+
+/// scss-lint:disable Indentation
+@import '~__libs/scss/lib-common-utils';
+#page-traincourse {
+
+  .train-course {
+    width: 1200px;
+    margin: 10px auto;
+  }
+}

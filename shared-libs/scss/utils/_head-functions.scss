@@ -1,0 +1,21 @@
+/// all contextless functions which all other sass files require.
+
+/// Strip unit from a variable.
+/// @param {Number} $value - value with unit
+/// @return {Number} plain value without unit
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+/// Generate relative size based on given base size(rem by default)
+/// @param {Number} $natual-size - size with px as unit
+/// @param {Number} $base-size - base size to be calculated upon
+/// @require $root-font-size
+/// @return {String}
+@function sz($natual-size, $base-size: $root-font-size) {
+  @if type-of($natual-size) != 'number' {
+    @error '$natual-size must be a number(better an integer).';
+  }
+
+  @return $natual-size / strip-unit($base-size) * 1rem;
+}

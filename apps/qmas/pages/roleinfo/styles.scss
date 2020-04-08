@@ -1,0 +1,14 @@
+@charset 'utf-8';
+
+/// scss-lint:disable Indentation
+@import '~__libs/scss/lib-common-utils';
+
+#page-roleinfo {
+  .role-info {
+    @include custom-container(sz(22));
+
+    margin:sz(10) auto sz(20);
+    // 导航50  面包屑 35  margin 30  padding 20 border 2
+    height: calc(100% - 137px);
+  }
+}

@@ -1,0 +1,20 @@
+.report-block {
+  @include  border-radius(4px);
+
+  border: 1px solid map-get($colors, dialog-cancel-border);
+
+  &__header {
+    @include border-radius(4px 4px 0 0);
+
+    text-align: center;
+    height: sz(39);
+    line-height: sz(39);
+    border-bottom: 1px solid map-get($colors, dialog-cancel-border);
+    background: map-get($colors, tab-bg);
+    font-size: map-get($font-sizes, sm);
+  }
+
+  &__content {
+    padding: sz(10) sz(20);
+  }
+}

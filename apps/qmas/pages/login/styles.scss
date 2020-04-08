@@ -1,0 +1,33 @@
+@charset 'utf-8';
+
+/// scss-lint:disable Indentation
+@import '~__libs/scss/lib-common-utils';
+
+#page-login {
+  background: url('~__libs/imgs/qalogin.png') no-repeat center top;
+  background-size: cover;
+
+  .qa-footer {
+    width: 100%;
+    height: sz(55);
+    padding-top: sz(15);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    &__foot {
+      margin: 0;
+      color: map-get($colors, pure-white);
+      text-align: center;
+    }
+  }
+
+  .qa-login-form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    // 宽 650px 高 363px
+    margin-left: sz(-650 / 2);
+    margin-top: sz(-363 / 2);
+  }
+}

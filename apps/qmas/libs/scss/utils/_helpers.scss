@@ -1,0 +1,15 @@
+// accordion 报警/全部 小角标
+.fraction-label {
+  font-size: map-get($font-sizes, xs);
+  color: map-get($colors, text-light);
+
+  i {
+    font-style: normal;
+  }
+
+  &--warning {
+    #{get-bem-root()}__numerator {
+      color: map-get($colors, theme-red);
+    }
+  }
+}

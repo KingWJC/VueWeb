@@ -1,0 +1,58 @@
+/// map of colors.
+/// @prop {color} active - active status
+/// @type map
+$colors: (
+  // *********************************灰,白,黑 色系******************************
+  'border-gray': #cccccc,
+  'notice-ok-bg': #dff1d8,
+  'notice-ok-border': #d9eaca,
+  'text-disabled-color': #989898,
+  'placeholder-text-color': #999999,
+  'text-color': #686868,
+  'paginator-light-border': #d6d6d6,
+  'dropdown-box-border': #d8d8d8,
+  'paginator-border': #ababab,
+  'placeholder-text-color-extra': #adadad,
+  'dialog-disabled-text-color': #808080,
+  'dialog-text-color': #555555,
+  'input-lighter-border': #dcdcdc,
+  'calendar-disabled-text': #bbbbbb,
+  'dialog-input-border': #d4d4d4,
+  'pure-white': #ffffff,
+  'pure-black': #000000,
+  'bg-home': #f5f5f5,
+  'text-main': #333333,
+  'text-light': #666666,
+  'checkbox-group-head-bg': #fafafa,
+  'checkbox-disabled-bg': #eef1f6,
+  'checkboxgroup-bg': #e8e8e8,
+  'notice-bar-cancel-bg': #fcf8e3,
+  'notice-bar-cancel-border': #fbedd0,
+  'essential-header': #5a5a5a,
+  'dialog-cancel-border': #e1e1e1,
+  'tab-bg': #f9f9f9,
+  'table-thead-color': #444444,
+  'reset-bg': #f1f1f1,
+  'calendar-active-bg': #d7e7f2,
+  'dialog-input-disabled-bg': #f0f0f0,
+  // *********************************灰,白,黑 色系******************************
+
+  // *********************************红色系*************************************
+  'theme-red': #f34a4f,
+  // *********************************红色系*************************************
+
+  // *********************************黄色系*************************************
+  'theme-orange': #ff8033,
+  'notice-bar-cancel-text': #6f4c14,
+  // *********************************黄色系*************************************
+
+  // *********************************蓝色系*************************************
+  'echart-blue': #2ea7e0,
+  'checkbox-default-border': #bacad7,
+  'theme-blue': #3789be,
+  // *********************************蓝色系*************************************
+
+  // *********************************绿色系*************************************
+  'success-green': #51b22e
+  // *********************************绿色系*************************************
+) !global;

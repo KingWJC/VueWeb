@@ -1,0 +1,346 @@
+/// custom container
+/// Mixin to generate border radius.
+/// @param {String} $border-padding-size 左右 border 和左右 padding 的和
+@mixin custom-container(
+  $border-padding-size: 0
+) {
+  min-width: $maximum-layout-width - $border-padding-size;
+  max-width: $maximum-layout-width - $border-padding-size;
+  margin: 0 auto;
+}
+
+/// @param {List} $radius           - radius value
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+/// Mixin to adjust user select event.
+/// @param {String} $mode           - select mode
+@mixin user-select($mode) {
+  -webkit-user-select: $mode;
+  -moz-user-select: $mode;
+  -ms-user-select: $mode;
+  user-select: $mode;
+}
+
+/// Mixin to generate box shadow.
+/// @param {Arglist} $shadow           - shadow definition
+
+//box-shadow:0px 10px 5px #000;
+//0px 阴影向右偏移量，为0
+//10px 阴影向下偏移量，为10px
+//5px 阴影的过渡距离，为5px
+//#000阴影颜色，为黑色
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -ms-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+/// Mixin to set placeholder color.
+/// @param {String} $color           - color
+@mixin placeholder-color($color) {
+  // WebKit, Blink, Edge
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  // Mozilla Firefox 4 to 18
+  // sass-lint:disable PseudoElement
+  &:-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  // Mozilla Firefox 19+
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  // Internet Explorer 10-11
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+/// Mixin to control box sizing.
+/// @param {String} $sizing           - sizing definition
+@mixin box-sizing($sizing) {
+  -webkit-box-sizing: $sizing;
+  -moz-box-sizing: $sizing;
+  -ms-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+
+/// Transition support.
+/// @param {Arglist} $rule           - transition rule set
+@mixin transition($rule...) {
+  -webkit-transition: $rule;
+  -moz-transition: $rule;
+  -ms-transition: $rule;
+  transition: $rule;
+}
+
+/// Transform support.
+/// @param {Arglist} $rule           - transform rule set
+@mixin transform($rule...) {
+  -webkit-transform: $rule;
+  -moz-transform: $rule;
+  -ms-transform: $rule;
+  transform: $rule;
+}
+
+/// TransformOrigin support.
+/// @param {Arglist} $rule           - transform-origin rule set
+@mixin transform-origin($rule...) {
+  -webkit-transform-origin: $rule;
+  -moz-transform-origin: $rule;
+  -ms-transform-origin: $rule;
+  transform-origin: $rule;
+}
+
+///  Animation support
+/// @param {Arglist} $def           - animation definition
+@mixin animation($def...) {
+  -webkit-animation: $def;
+  -moz-animation: $def;
+  -ms-animation: $def;
+  animation: $def;
+}
+
+///  AnimationDelay support
+/// @param {Arglist} $def           - animation-delay definition
+@mixin animation-delay($def...) {
+  -webkit-animation-delay: $def;
+  -moz-animation-delay: $def;
+  -ms-animation-delay: $def;
+  animation-delay: $def;
+}
+
+/// 关键帧动画
+/// @param {String} $animation-name - 动画全局名称
+/// @param {String} @content 关键帧的具体定义, e.g. 0% {blabla}
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+/// Mixin printing a linear-gradient
+/// as well as a plain color fallback
+/// and the `-webkit-` prefixed declaration
+/// @access public
+/// @param {String | List | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+@mixin linear-gradient($direction, $color-stops...) {
+  @if is-direction($direction) == false {
+    $color-stops: ($direction, $color-stops);
+    $direction: 180deg;
+  }
+
+  // sass-lint:disable DuplicateProperty
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+// 质控项目，蓝色dropdown
+@mixin blue-select-dropdown(
+  $width: sz(120)
+) {
+    width:$width;
+
+    &__selected {
+      border: none;
+      background-color: map-get($colors, theme-blue);
+
+      &-plain{
+        color: map-get($colors, pure-white);
+      }
+    }
+
+    &__triangle {
+      border-color: map-get($colors, pure-white);
+    }
+
+    &--open {
+      .select-dropdown-v2 {
+        &__triangle {
+          border-color: map-get($colors, pure-white);
+        }
+      }
+    }
+  }
+
+@mixin white-select-dropdown(
+  $width: sz(120)
+) {
+  width: $width;
+
+  &__selected {
+    border: none;
+
+    &-plain {
+      color: map-get($colors, table-thead-color);
+    }
+  }
+
+  &-options {
+    @include border-radius(4px);
+
+    font-weight: normal;
+
+    &__items {
+      padding: sz(4) 0;
+
+      &-item {
+        &-text {
+          color: map-get($colors, table-thead-color);
+        }
+
+        &--selected {
+          .select-dropdown-v2-options__items-item-text {
+            color: map-get($colors, theme-blue);
+          }
+        }
+      }
+    }
+  }
+
+  &__triangle {
+    border-color: map-get($colors, pure-black);
+  }
+}
+
+//ie10 兼容 input框文字字体
+@mixin patch-ie10-input-font {
+  //媒体查询 监测ie10浏览器 执行{}中input字体重置
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    font-family: '\5FAE\8F6F\96C5\9ED1','Microsoft YaHei';
+  }
+}
+
+//文字溢出部分隐藏
+/// @param {Function} $threshold - 溢出生效临界点
+/// @param {String} $control - 溢出控制方式，可选 width 和 max-width
+@mixin word-hidden(
+  $threshold: sz(500),
+  $control: width
+){
+  @extend %overflow-hidden-word;
+
+  #{$control}: $threshold;
+}
+
+// 科研质控统一弹框UI（蓝白风格）
+@mixin dialog-css(
+  $content-width: sz(580),
+  $body-height: sz(490)
+){
+  width: $content-width;
+
+  .dialog__body {
+    height: $body-height;
+  }
+}
+
+// 科研质控统一表格UI
+@mixin unify-table-ui(
+  // 链接下级 tr bem用的名字
+  // e.g. 表格名 .abc, row -> .abc__row
+  // e.g. 表格名 .queue__table, 下级名 row: .queue__table__row
+  $tr-name: tr,
+  // bem 链接符
+  // e.g. 表格名 .queue__table, 下级名 row, 链接符 -: .queue__table-row
+  $linker: '-',
+  // bem 激活名
+  // e.g. 表格名 .queue__table, 下级名 row, 链接符 -, 激活名 active:
+  // .queue__table-row--active
+  $tr-active-name: active
+) {
+  @extend %unify-table-ui-basics;
+
+  // 需要访问 & 引用，mixin 支持
+  // 给 tbody 里面 tr 加 &__tr 和 &__tr--active 来支持隔行变色以及当前业务所需样式
+  &#{$linker}#{$tr-name} {
+    &--#{$tr-active-name} {
+      @at-root #{get-bem-root()} tbody & {
+        &:hover {
+          background: map-get($colors, bg-home);
+        }
+      }
+    }
+  }
+}
+
+// @private
+// 私有 mixin
+// 设置 accordion 每列的宽度
+// 表格都改成此 mixin 实现
+// @param $width-arr {Array}
+@mixin table-sizes($width-arr...) {
+  @for $i from 1 through length($width-arr) {
+    &:nth-child(#{$i}) {
+      width: sz(nth($width-arr, $i));
+    }
+  }
+}
+
+// 调整 accordion 的动态样式
+@mixin unify-accordion-ui(
+  // @param {String} 渲染类型 thead tbody all
+  $type: 'all',
+  // @param {Number} 列宽, 不用传最后一个, 默认最后一个100%自适应
+  $width-arr...
+) {
+  &__table {
+    @if $type == thead {
+      > thead {
+        th {
+          // 带上 ... 表示把数组解构之后传过去, 接收到之后形参用 ...
+          // 拼装的结果就是原数组
+          @include table-sizes($width-arr...);
+        }
+      }
+    } @else if $type == tbody {
+      > tbody {
+        > tr:first-child {
+          td {
+            @include table-sizes($width-arr...);
+          }
+        }
+      }
+    } @else if $type == all {
+      > thead {
+        th {
+          @include table-sizes($width-arr...);
+        }
+      }
+
+      > tbody {
+        > tr:first-child {
+          td {
+            @include table-sizes($width-arr...);
+          }
+        }
+      }
+    }
+  }
+}

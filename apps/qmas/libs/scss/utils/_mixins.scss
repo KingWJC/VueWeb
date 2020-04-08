@@ -1,0 +1,79 @@
+// 可疑率颜色变化
+@mixin list-color-change (
+  $bem-name: __susprate
+) {
+  &#{$bem-name} {
+    // 正常
+    &--normal {
+      color: map-get($app-colors, gray-green);
+    }
+
+    // 报警
+    &--warn {
+      color: map-get($colors, theme-red);
+    }
+  }
+}
+
+// 收藏小星星图标
+@mixin collections-star (
+  $bem-name: __star
+) {
+  &#{$bem-name} {
+    display: inline-block;
+    vertical-align: middle;
+    width: sz(14);
+    height: sz(14);
+    cursor: pointer;
+    background: url('~__libs/imgs/collection_no.png');
+    background-size: sz(14);
+    background-repeat: no-repeat;
+
+    &--active {
+      background-image: url('~__libs/imgs/collection_yes.png');
+    }
+  }
+}
+
+// 收藏页面4个路由页面样式抽取
+@mixin collection-ui () {
+  @include border-radius(4px);
+  @include list-color-change();
+  @include collections-star();
+
+  background: map-get($colors, pure-white);
+  // margin 20
+  height: calc(100% - 20px);
+  padding: sz(10);
+  border: 1px solid map-get($colors, dialog-cancel-border);
+
+  &__handle {
+    text-indent: sz(29);
+  }
+
+  //按钮
+  &__view-index-btn {
+    margin-left: sz(7);
+
+    #{get-bem-root()} & {
+      color: map-get($colors, theme-blue);
+    }
+  }
+
+  &__paginator {
+    margin-top: sz(10);
+  }
+
+
+  // tabs 标题栏
+  &__headctn {
+    margin-top: sz(10);
+  }
+
+  // 可滚动表体
+  &__bodyctn {
+    // header 41 paginator 38 margin 10
+    height: calc(100% - 89px);
+    overflow: auto;
+  }
+}

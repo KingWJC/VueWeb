@@ -1,0 +1,38 @@
+// core functions required to boot up the sass project
+@import './head-functions';
+@import './colors';
+
+// do not remove 'px' here
+// do not add 'px' anywhere else.
+$root-font-size: 20px;
+
+// map of font sizes.
+// @prop {map} xs - extra small size
+// @prop {map} base - base size(the most frequently used size)
+// @prop {map} sm - small size
+// @prop {map} md - medium size
+// @prop {map} lg - large size
+// @prop {map} xl - extra large size
+// @type map
+$font-sizes: (
+  'xs': sz(12),
+  // 标准字号
+  'base': sz(14),
+  'sm': sz(16),
+  'md': sz(18),
+  'lg': sz(20),
+  'xl': sz(22)
+) !global;
+
+// global footer height
+// used together with `page-content-wrapper` module
+$global-footer-height: sz(60);
+
+// maximum layout width
+$maximum-layout-width: sz(1200);
+// maximum grid columns
+$maximum-grid-columns: 5;
+
+// dialog module, base layer, which is used for the dialog mask(if exists)
+// while the dialog itself has a higher layer then the mask's layer.
+$dialog-base-layer: 999;

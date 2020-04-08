@@ -1,0 +1,4 @@
+[submodule "wiki"]
+	path = wiki
+	url = git@bitbucket.org:huaju/ruixin-fe.git/wiki
+	ignore = dirty

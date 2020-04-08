@@ -1,0 +1,227 @@
+/// Basic calendar
+.calendar {
+  $_calendar-active-bg: map-get($colors, calendar-active-bg);
+  $_calendar-hover-color: map-get($colors, theme-blue);
+  $_calendar-day-title: map-get($colors, table-thead-color);
+  $_calendar-date-normal: map-get($colors, text-light);
+  $_calendar-date-disabled: map-get($colors, calendar-disabled-text);
+
+
+  @include user-select(none);
+
+  width: sz(32 * 7);
+  font-size: map-get($font-sizes, base);
+  background: map-get($colors, pure-white);
+  font-weight: normal;
+
+  // in multi-lang environment you may need to slightly adjust this value for
+  // a better UI appearance.
+
+  &__paginator {
+    position: relative;
+    text-align: center;
+
+    &-btn {
+      position: absolute;
+      top: 0;
+      display: block;
+      width: sz(25);
+      height: sz(30);
+      line-height: sz(30);
+      text-decoration: none;
+      cursor: default;
+
+      i {
+        @include transform(rotate(-45deg));
+
+        display: inline-block;
+        width: sz(6);
+        height: sz(6);
+        position: absolute;
+        top: sz(12);
+        border: 1px solid map-get($colors, placeholder-text-color-extra);
+      }
+
+      // only visible when prev or next month available
+      &--enabled {
+        width: sz(22);
+        height: sz(30);
+        cursor: pointer;
+
+        >i {
+          border-color: map-get($colors, text-color);
+        }
+      }
+
+      &--prevmon {
+        left: 0;
+
+        i {
+          border-bottom: 0;
+          border-right: 0;
+          left: 0;
+        }
+      }
+
+      &--nextmon {
+        right: 0;
+
+        i {
+          border-top: 0;
+          border-left: 0;
+          right: 0;
+        }
+      }
+    }
+
+    &-title {
+      width: sz(180);
+      margin: 0 auto;
+
+      &-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      &-year,
+      &-month {
+        float: left;
+
+        > span {
+          display: inline-block;
+        }
+
+        .select-dropdown-v2 {
+          height: sz(31);
+          &__selected {
+            height: sz(29);
+            border: 1px solid map-get($colors, border-gray);
+
+            &-plain {
+              height: 100%;
+              line-height: sz(29);
+              overflow: visible;
+            }
+          }
+
+          &__triangle {
+            right: sz(5);
+            margin-top: sz(-5);
+          }
+
+          &--open {
+            .select-dropdown-v2__triangle {
+              margin-top: -2px;
+            }
+          }
+        }
+
+        .select-dropdown-v2-options__items-item {
+          padding: 0 sz(2) 0 sz(10);
+        }
+      }
+
+      &-year {
+        .select-dropdown-v2 {
+          width: sz(68);
+        }
+      }
+
+      &-month {
+        margin-left: sz(20);
+
+        .select-dropdown-v2 {
+          width: sz(48);
+        }
+      }
+    }
+  }
+
+  &__date {
+    display: block;
+    width: sz(32);
+    height: sz(32);
+
+    font-size: map-get($font-sizes, xs);
+    font-style: normal;
+    line-height: sz(32);
+    cursor: pointer;
+
+    &:hover {
+      color: $_calendar-hover-color;
+    }
+
+    // available dates(usually used in a range calendar)
+    &--active {
+      background: $_calendar-active-bg;
+    }
+
+    &--selected {
+      color: map-get($colors, pure-white);
+      background: map-get($colors, theme-blue);
+
+      &:hover {
+        color: map-get($colors, pure-white);
+      }
+    }
+
+    // empty date（usually the first columns of the first row or the last columns
+    // of the last row)
+    &--empty {
+      cursor: default;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+
+    // current date is disabled
+    &--disabled {
+      cursor: not-allowed;
+      color: $_calendar-date-disabled;
+
+      &:hover {
+        color: $_calendar-date-disabled;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+
+    border-spacing: 0;
+    border-collapse: collapse;
+    background: map-get($colors, pure-white);
+
+    th,
+    td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      font-weight: normal;
+    }
+
+    td {
+      padding: 0;
+      color: $_calendar-date-normal;
+    }
+
+    tr:first-child {
+      td {
+        color: $_calendar-day-title;
+        padding: sz(5) 0;
+      }
+    }
+  }
+
+  // 调整年/月dropdown样式 只有月份生效    为什么?
+
+  // @at-root .calendar-select-dropdown-v2-options {
+  //   .select-dropdown-v2-options__items-item {
+  //     background: red;
+  //     padding: 0 sz(2) 0 sz(10);
+  //   }
+  // }
+}

@@ -1,0 +1,37 @@
+/// base container
+.container {
+  @extend %containerization;
+
+  // full size container;
+  &.container--full {
+    max-width: none;
+  }
+
+  // one row
+  .grid-full {
+    @extend %clearfix;
+    width: 100%;
+
+    // column definition
+    [class*='grid-col'] {
+      @extend %clearfix;
+      float: left;
+
+      &.grid-col--right {
+        float: right;
+      }
+    }
+
+    // indicates it's a column.
+    // sass-lint:disable SelectorDepth
+    .grid-col {
+      @for $i from 2 through $maximum-grid-columns {
+        @for $j from 1 to $i {
+          &__#{$j}-#{$i} {
+            width: $j / $i * 100%;
+          }
+        }
+      }
+    }
+  }
+}

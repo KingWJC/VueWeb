@@ -1,0 +1,24 @@
+/// Micro clearfix to avoid repeating `.clearfix` everywhere
+.clearfix {
+  &::after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+/// As a coveninent tool for js to hide elements
+.hide {
+  // sass-lint:disable ImportantRule
+  display: none !important;
+}
+
+/// Visually hide one element but don't remove it from the document flow
+.invisible {
+  visibility: hidden;
+}
+
+// grid styles
+@import './grid';
+// grid styles
+@import './btns';
