@@ -38,7 +38,7 @@
     "element-ui": "^2.12.0",
     "es6-shim": "0.35.3",
     "html2canvas": "^1.0.0-rc.5",
-    "jquery": "3.2.1",
+    "jquery": "3.5.0",
     "jspdf": "^1.5.3",
     "moment": "2.17.1",
     "normalize.css": "6.0.0",
