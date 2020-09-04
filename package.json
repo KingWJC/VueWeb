@@ -85,7 +85,7 @@
     "koa-webpack-hmr": "https://github.com/maogongzi/koa-webpack-hmr/tarball/v0.0.2",
     "lint-staged": "7.2.0",
     "liquidjs": "https://github.com/maogongzi/liquidjs/tarball/patch-extends-v0.4",
-    "node-sass": "4.9.2",
+    "node-sass": "4.13.1",
     "prettier": "https://github.com/maogongzi/prettier/tarball/patch-style-indentaion-v0.1",
     "sass-loader": "6.0.6",
     "staged-git-files": "1.1.1",
